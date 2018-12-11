@@ -5,6 +5,7 @@ window.onload = function() {
   }
 };
 let map;
+
 function showPosition(position) {
   getEvents(position.coords.latitude, position.coords.longitude);
 }
@@ -13,28 +14,24 @@ function showPosition(position) {
 const eventInput = document.getElementById("event-input"); // whatever that's being in input
 const eventSearchButton = document.getElementById("event-search-button"); // color search button
 
-if (eventInput) {
-  eventInput.addEventListener("keyup", keyPress);
-}
-
-function keyPress(event) {
-  if (event.keyCode === 13) {
-    if (event.value !== undefined ) {
-      input.value = event.value;
-    }
-    // getWords();
-  }
-}
+// if (eventInput) {
+//   eventInput.addEventListener("keyup", keyPress);
+// }
+//
+// function keyPress(event) {
+//   if (event.keyCode === 13) {
+//     if (event.value !== undefined ) {
+//       input.value = event.value;
+//     }
+//     // getWords();
+//   }
+// }
 
 const eventResultContainer = document.getElementById("event-result-container");
 
-const eventSearchClick = function(eventInput) {
-
-};
-
 if (eventSearchButton) {
   eventSearchButton.addEventListener("click", function() {
-    eventSearchClick(colorInput);
+    eventSearchClick(eventInput);
   });
   // colorSearch() function on search button
 }
@@ -44,48 +41,65 @@ function showEvents(events) {
   eventResultContainer.innerHTML = "";
   console.log(events);
   for(let i=0; i< events.length; i++) {
-    let latitude = events[i].Latitude;
-    let longitude = events[i].Longitude;
-    let name = events[i].Name;
-    let venue = events[i].Venue;
-    let venueName = venue.Name;
-    let address = venue.Address;
-    let phone = venue.Phone;
-    let description = events[i].Description;
-    var myLatlng = new google.maps.LatLng(latitude,longitude);
+      let latitude = events[i].Latitude;
+      let longitude = events[i].Longitude;
+      let name = events[i].Name;
+      let venue = events[i].Venue;
+      let venueName = venue.Name;
+      let address = venue.Address;
+      let phone = venue.Phone;
+      let description = events[i].Description;
+      var myLatlng = new google.maps.LatLng(latitude,longitude);
 
+      var marker = new google.maps.Marker({
+        position: myLatlng,
+        title: name
+      });
 
-    var marker = new google.maps.Marker({
-      position: myLatlng,
-      title: name
-    });
+      marker.addEventListener("onmouseover",eventShow())
 
     // To add the marker to the map, call setMap();
     marker.setMap(map);
+
+
+
     let price = events[i].Price;
     let imageUrl = events[i].Image[2]["@attributes"].src;
     let eventDiv = document.createElement('div');
     eventDiv.classList.add("event-result");
+    eventDiv.setAttribute("class", "event-div");
     eventDiv.style.margin = "0 auto";
-    // eventDiv.onclick = `getColors(${colorValue})`;
-    // eventDiv.addEventListener("click", function(){
-    //   colorInput.value = colorValue;
-    //   getColors(colorValue);
-    // });
-    let eventTextDiv = document.createElement('h5');
-    eventTextDiv.style.backgroundColor = "white";
-    eventTextDiv.innerHTML = name;
 
+    let eventTextDiv = document.createElement('h5');
+    eventTextDiv.setAttribute("class", "font");
+    // eventTextDiv.style.backgroundColor = "white";
+    eventTextDiv.innerHTML = name;
     const img = document.createElement("img");
     img.src = imageUrl;
-
     eventDiv.append(eventTextDiv);
     eventDiv.appendChild(img);
-    eventResultContainer.append(eventDiv);
+    // eventResultContainer.append(eventDiv);
     // colorDiv.setAttribute('onclick', `getColors('${colorValue}');`);
   }
 }
 
+function eventShow() {
+    let price = events[i].Price;
+    let imageUrl = events[i].Image[2]["@attributes"].src;
+    let eventDiv = document.createElement('div');
+    eventDiv.classList.add("event-result");
+    eventDiv.setAttribute("class", "event-div");
+    eventDiv.style.margin = "0 auto";
+
+    let eventTextDiv = document.createElement('h5');
+    eventTextDiv.setAttribute("class", "font");
+    // eventTextDiv.style.backgroundColor = "white";
+    eventTextDiv.innerHTML = name;
+    const img = document.createElement("img");
+    img.src = imageUrl;
+    eventDiv.append(eventTextDiv);
+    eventDiv.appendChild(img);
+}
 
 async function getEvents(lat, lng) {
   const eventSearchURL = `https://cors-anywhere.herokuapp.com/https://www.nyartbeat.com/list/event_searchNear?latitude=${lat}&longitude=${lng}`;

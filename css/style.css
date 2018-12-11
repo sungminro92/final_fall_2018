@@ -1,45 +1,124 @@
+/* ================================== WORD PAGE  ================================== */
 
+.flex-parent {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.nav-menu {
+    /* navigation size*/
+    width: 200px;
+}
+
+.nav-container {
+    width: 100vw;
+    height: auto;
+    margin-bottom: 100px;
+    justify-content: center;
+    /*position: fie*/
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 50px;
+}
+
+
+.nav-menu:hover {
+    background-color: black;
+    color: white;
+    text-decoration:none;
+    text-decoration-style: none;
+}
+
+.font {
+    font-family: 'Coming Soon', cursive;
+}
+
+.active-page {
+    background-color: black;
+    color: white;
+}
 
 .text-align {
     text-align: center;
 }
 
-#word-result-container {
+#search-container {
     text-align: center;
-    width: 400px;
-    margin: 0 auto;
-    background-color: none;
-    margin-top: 15px;
+    width: 500px;
+    height: auto;
+    margin-top: 5vh;
 }
 
 #input-word {
     text-align: center;
     font-size: large;
-    width: 300px;
+    width: 250px;
     height: 50px;
+    margin-right: 5px;
+    border: 1px solid black;
 }
 
 .button {
-    text-align: center;
-    background-color: pink;
-    width: 300px;
-    border-style: none;
+    display: inline-block;
+    background-color: white;
+    width: 120px;
+    height: auto;
+    border: 2px solid black;
+    /*border-radius: 50px;*/
 }
 
-#search-container {
-    margin-top: 15vh;
-    text-align: center;
+.button:hover {
+    background-color: black;
+    color: white;
 }
+
+#word-result-container {
+    text-align: center;
+    width: 400px;
+    margin-top: 5vh;
+}
+
+#clicked-words-container {
+    margin-top: 5vh;
+    width: 200px;
+    height: 50vh;
+}
+
+.words {
+    margin: 5px 5px 5px 5px;
+    height: auto;
+    padding: 5px 15px 5px 15px;
+    border-top-right-radius: 20px 50%;
+    border-bottom-right-radius: 20px 50%;
+    border-top-left-radius: 20px 50%;
+    border-bottom-left-radius: 20px 50%;
+    border: 2px solid black;
+    display:inline-block;
+    cursor: pointer;
+}
+
+.words:hover {
+    background-color: black;
+    color: white;
+}
+
+/* ================================== COLOR PAGE  ================================== */
 
 #color-result-container {
     text-align: center;
+    width: 40vw;
+    min-width: 300px;
+    max-width: 600px;
 }
 
-#event-result-container {
-    text-align: center;
-    height: 100%;  /* The height is 400 pixels */
-    width: 30%;
-    display: inline;
+#color-search-container {
+    width: 40vw;
+    min-width: 300px;
+    max-width: 600px;
 }
 
 .color-result {
@@ -50,18 +129,49 @@
     vertical-align: middle;
 }
 
-.event-result {
-    width: 100%;
-    height: auto;
+#color-input{
     text-align: center;
+    font-size: large;
+    width: 300px;
+    height: 50px;
+    border: 1px solid black;
+}
+
+#color-search-button {
+    margin-left: 20px;
+}
+
+/* ================================== COLOR PAGE  ================================== */
+
+.event-result {
+    width: 300px;
+    height: auto;
     vertical-align: middle;
     border-style: solid;
 }
 
 #map  {
-    height: 80%;  /* The height is 400 pixels */
-    width: 70%;  /* The width is the width of the web page */
+    margin-top: -50px;
+    z-index: -1;
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
-.flex-container {
-    display: flex;
+
+#event-result-container {
+    text-align: center;
+    height: 100%;  /* The height is 400 pixels */
+    width: 30%;
+    display: inline;
+}
+
+.event-div {
+    width: 300px;
+    background-color: rgba(255,255,255,0.5);
+    opacity: 50%;
+    margin: 5px 0px 0px 5px;
+}
+
+.event-text {
+    font-
 }

@@ -5,28 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Coming+Soon" rel="stylesheet">
+
 </head>
     <body>
-        <div class="text-align" id="nav-container">
-            <p>PLAY WITH: </p>
-            <nav>
-                words |
-                <a class="nav-menu" href="color.html">colors</a> |
-                <a class="nav-menu" href="event.html">events</a>
-            </nav>
-
+        <div class="text-align nav-container flex-parent">
+            <div class="font nav-menu active-page"><a href="index.html">WoRds.</a></div>
+            <div class="font nav-menu"><a href="color.html">CoLoRs.</a></div>
+            <div class="font nav-menu"><a href="event.html">EvEnTs.</a></div>
         </div>
 
-        <div id="search-container">
-            <div id="error-message"> </div>
-            <input type="text" id="input-word" placeholder="word you're thinking about today"><br>
-            <input type="button" class="button btn btn-default" value="Get inspirations" id="search-button">
-            <!-- button to go back to search -->
-            <!--<div id="back-to-search" class="button btn btn-warning btn-default">go back to search</div>-->
-        </div>
-        <div id="word-result-container">
+        <div class="flex-parent">
+            <div id="search-container">
+                <div id="error-message"> </div>
+                <div class="flex-parent">
+                <input class="font" type="text" id="input-word" placeholder="Start with any word"><br>
+                <input type="button" class="font button btn btn-default" value="word chase !" id="search-button">
+                </div>
+                <!--<div id="back-to-search" class="button btn btn-warning btn-default">go back to search</div>-->
+                <div id="word-result-container" class="font">
 
 
+                </div>
+            </div>
+
+            <div id="clicked-words-container"></div>
         </div>
 
 

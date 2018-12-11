@@ -38,16 +38,20 @@ function keyPress(event) {
 // http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=15953433&apikey=a9ea0e0ca0049d1f0195562840890071
 // lyrics_body
 // search
-
+function remove() {
+    this.parentNode.remove();
+}
 
 // wordsapi
 // add header
 // Key = kxITJ4PvNOmshjYMJaTYuaqwFxqap1GhFBQjsnDVXq3lC4b1Nq
-
+const errorMessage = document.getElementById('error-message');
+const clickedWordsContainer = document.getElementById('clicked-words-container');
 function getWords() {
     let inputValue = input.value;
     console.log(inputValue);
     wordResultContainer.innerHTML = "";
+    errorMessage.innerHTML = "";
     const wordURL = "https://wordsapiv1.p.rapidapi.com/words/";
     fetch(wordURL + inputValue, {
         headers: {"X-Mashape-Key": "kxITJ4PvNOmshjYMJaTYuaqwFxqap1GhFBQjsnDVXq3lC4b1Nq"}
@@ -64,8 +68,10 @@ function getWords() {
                 let wordValue = synonymsResult[i];
                 let wordDiv = document.createElement('div');
                 wordDiv.innerHTML = wordValue;
+                wordDiv.setAttribute("class", "words");
                 wordDiv.addEventListener('click', function() {
                   input.value = wordValue;
+                  clikedWords(wordValue);
                   getWords();
                 });
                 wordResultContainer.appendChild(wordDiv);
@@ -75,7 +81,26 @@ function getWords() {
                 // wordResultContainer.appendChild(wordContainer);
             }
     })
-    .catch(() => console.log("Cannot access " + wordURL + " response. Blocked by browser?"))
+    .catch(function() {
+        errorMessage.innerHTML="try another word !";
+        errorMessage.style.color = "red";
+        errorMessage.setAttribute("class", "font");
+        console.log("Cannot access " + wordURL + " response. Blocked by browser?");
+    })
+}
+
+function clikedWords(word) {
+    let clickedWordDiv = document.createElement('div');
+    let x = document.createElement('a');
+    x.innerHTML ="  x";
+    x.style.color = "red";
+    x.style.padding = "2px 3px 2px 3px";
+    clickedWordDiv.innerHTML = word;
+    clickedWordDiv.appendChild(x);
+    clickedWordsContainer.appendChild(clickedWordDiv);
+    clickedWordDiv.setAttribute("class", "words");
+    clickedWordDiv.style.flexDirection = "column";
+    x.addEventListener('click', remove, false);
 }
 
 

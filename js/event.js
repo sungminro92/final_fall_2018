@@ -49,57 +49,57 @@ function showEvents(events) {
       let address = venue.Address;
       let phone = venue.Phone;
       let description = events[i].Description;
-      var myLatlng = new google.maps.LatLng(latitude,longitude);
 
-      var marker = new google.maps.Marker({
+      // refer to this webpage: https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
+      // let contentString = ''
+      // let infoWindow = new google.maps.InfoWindow({
+      //     content: contentString
+      // });
+      let myLatlng = new google.maps.LatLng(latitude,longitude);
+      let marker = new google.maps.Marker({
         position: myLatlng,
-        title: name
+        title: name,
+
       });
-
-      marker.addEventListener("onmouseover",eventShow())
-
     // To add the marker to the map, call setMap();
-    marker.setMap(map);
+      marker.setMap(map);
 
+          let imageUrl = events[i].Image[2]["@attributes"].src;
+          let eventDiv = document.createElement('div');
+          eventDiv.classList.add("event-result");
+          eventDiv.setAttribute("class", "event-div");
+          eventDiv.style.margin = "0 auto";
 
-
-    let price = events[i].Price;
-    let imageUrl = events[i].Image[2]["@attributes"].src;
-    let eventDiv = document.createElement('div');
-    eventDiv.classList.add("event-result");
-    eventDiv.setAttribute("class", "event-div");
-    eventDiv.style.margin = "0 auto";
-
-    let eventTextDiv = document.createElement('h5');
-    eventTextDiv.setAttribute("class", "font");
-    // eventTextDiv.style.backgroundColor = "white";
-    eventTextDiv.innerHTML = name;
-    const img = document.createElement("img");
-    img.src = imageUrl;
-    eventDiv.append(eventTextDiv);
-    eventDiv.appendChild(img);
-    // eventResultContainer.append(eventDiv);
+          let eventTextDiv = document.createElement('h5');
+          eventTextDiv.setAttribute("class", "font");
+          // eventTextDiv.style.backgroundColor = "white";
+          eventTextDiv.innerHTML = name;
+          const img = document.createElement("img");
+          img.src = imageUrl;
+          eventDiv.append(eventTextDiv);
+          eventDiv.appendChild(img);
+          eventResultContainer.append(eventDiv);
     // colorDiv.setAttribute('onclick', `getColors('${colorValue}');`);
   }
 }
 
-function eventShow() {
-    let price = events[i].Price;
-    let imageUrl = events[i].Image[2]["@attributes"].src;
-    let eventDiv = document.createElement('div');
-    eventDiv.classList.add("event-result");
-    eventDiv.setAttribute("class", "event-div");
-    eventDiv.style.margin = "0 auto";
-
-    let eventTextDiv = document.createElement('h5');
-    eventTextDiv.setAttribute("class", "font");
-    // eventTextDiv.style.backgroundColor = "white";
-    eventTextDiv.innerHTML = name;
-    const img = document.createElement("img");
-    img.src = imageUrl;
-    eventDiv.append(eventTextDiv);
-    eventDiv.appendChild(img);
-}
+// function eventShow() {
+//     let price = events[i].Price;
+//     let imageUrl = events[i].Image[2]["@attributes"].src;
+//     let eventDiv = document.createElement('div');
+//     eventDiv.classList.add("event-result");
+//     eventDiv.setAttribute("class", "event-div");
+//     eventDiv.style.margin = "0 auto";
+//
+//     let eventTextDiv = document.createElement('h5');
+//     eventTextDiv.setAttribute("class", "font");
+//     // eventTextDiv.style.backgroundColor = "white";
+//     eventTextDiv.innerHTML = name;
+//     const img = document.createElement("img");
+//     img.src = imageUrl;
+//     eventDiv.append(eventTextDiv);
+//     eventDiv.appendChild(img);
+// }
 
 async function getEvents(lat, lng) {
   const eventSearchURL = `https://cors-anywhere.herokuapp.com/https://www.nyartbeat.com/list/event_searchNear?latitude=${lat}&longitude=${lng}`;
